@@ -3,24 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kudazo Software Engineering – Binnenkort beschikbaar</title>
-  <meta name="description" content="Binnenkort: Kudazo Software Engineering. Freelance software engineering voor snelle, solide oplossingen." />
-  <meta property="og:title" content="Kudazo Software Engineering – Binnenkort beschikbaar" />
-  <meta property="og:description" content="Binnenkort: Kudazo Software Engineering. Freelance software engineering voor snelle, solide oplossingen." />
+  <title>Kudazo Software Engineering – Delphi & Databases (Avond/Weekend)</title>
+  <meta name="description" content="Freelance software engineer (Delphi & Databases). Onderhoud, optimalisatie en ondersteuning van bestaande applicaties. Beschikbaar buiten kantooruren (avonden/weekenden), max. 12 uur per week." />
+
+  <meta property="og:title" content="Kudazo Software Engineering – Delphi & Databases" />
+  <meta property="og:description" content="Onderhoud & optimalisatie van bestaande applicaties. Avond- & weekendinzet (max. 12u/week)." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://dummyimage.com/1200x630/0f172a/ffffff&text=Kudazo" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg: #0f172a;        /* slate-900 */
-      --bg2:#111827;        /* gray-900  */
-      --fg: #e5e7eb;        /* gray-200 */
-      --muted:#9ca3af;      /* gray-400 */
-      --accent:#14b8a6;     /* teal-500 */
-      --card:#0b1224aa;     /* translucent card */
-      --ring:#22d3ee55;     /* cyan ring glow */
+      --bg: #0f172a;
+      --bg2:#111827;
+      --fg: #e5e7eb;
+      --muted:#9ca3af;
+      --accent:#14b8a6;
+      --card:#0b1224aa;
+      --ring:#22d3ee55;
+      --line:#1f2937;
+      --good:#22c55e;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -35,14 +40,11 @@
       place-items:center;
       padding:24px;
     }
-    .wrap{
-      max-width:900px;
-      width:100%;
-    }
+    .wrap{max-width:980px;width:100%}
     .card{
       position:relative;
       background:var(--card);
-      border:1px solid #1f2937;
+      border:1px solid var(--line);
       backdrop-filter: blur(8px);
       border-radius:24px;
       padding:32px 28px;
@@ -54,72 +56,155 @@
       background: conic-gradient(from 210deg, #0ea5e9, #14b8a6, #22d3ee, #0ea5e9);
       display:grid; place-items:center; color:white; font-weight:800; font-size:22px;
       box-shadow: 0 0 0 6px #ffffff08, 0 12px 30px #0ea5e966;
+      user-select:none;
     }
     h1{
-      font-size:clamp(28px, 5vw, 40px);
-      line-height:1.1; margin:0; letter-spacing:-0.02em;
+      font-size:clamp(28px, 5vw, 42px);
+      line-height:1.05; margin:0; letter-spacing:-0.02em;
     }
+    .tagrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
     .tag{
-      display:inline-block; margin-top:10px; padding:6px 10px; border-radius:999px;
-      border:1px solid #1f2937; color:var(--muted); font-size:14px; background:#0b1224bb;
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--line); color:var(--muted); font-size:14px; background:#0b1224bb;
     }
-    p{color:var(--muted); font-size:18px; line-height:1.6; margin:16px 0 24px}
-    .actions{display:flex; flex-wrap:wrap; gap:12px}
+    .dot{width:8px;height:8px;border-radius:99px;background:var(--good); box-shadow:0 0 0 4px #22c55e22}
+    p{color:var(--muted); font-size:18px; line-height:1.65; margin:16px 0 18px}
+    .actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:10px}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 16px; border-radius:12px; text-decoration:none; font-weight:600;
-      border:1px solid #1f2937; background:#0b1224; color:var(--fg);
-      transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+      border:1px solid var(--line); background:#0b1224; color:var(--fg);
+      transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease, opacity .2s ease;
+      white-space:nowrap;
     }
     .btn:hover{ transform: translateY(-1px); border-color:#334155; box-shadow:0 6px 18px #0006}
     .btn.primary{ background: linear-gradient(135deg, #0ea5e9, #14b8a6); color:#081018; border:none }
+    .btn.ghost{ background: transparent }
     .grid{ display:grid; grid-template-columns: 1fr; gap:18px; margin-top:18px }
-    .grid .tile{
-      padding:16px; border-radius:16px; border:1px dashed #2a3649; color:#b7c3d0; background:#0b122480;
+    @media (min-width: 820px){ .grid{ grid-template-columns: 1.15fr .85fr } }
+    .tile{
+      padding:16px; border-radius:16px; border:1px dashed #2a3649;
+      color:#b7c3d0; background:#0b122480;
     }
-    @media (min-width: 720px){ .grid{ grid-template-columns: 1.2fr .8fr } }
+    .tile strong{color:var(--fg)}
+    ul{margin:10px 0 0 18px; padding:0 0 0 4px}
+    li{margin:6px 0}
+    .mini{
+      margin-top:12px; font-size:14px; color:#94a3b8; line-height:1.55
+    }
+    .mini a{color:#cbd5e1}
     footer{ margin-top:18px; text-align:center; color:#64748b; font-size:13px }
     .ring{ position:absolute; inset:-2px; border-radius:24px; pointer-events:none; box-shadow:0 0 0 6px var(--ring) }
+    .split{display:grid; gap:10px; margin-top:12px}
+    .kpi{
+      display:flex; flex-wrap:wrap; gap:10px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px; border-radius:14px; border:1px solid var(--line);
+      background:#0b1224; color:#cbd5e1; font-size:14px;
+    }
+    .pill b{color:var(--fg)}
+    .hr{height:1px;background:#1f293733;margin:16px 0}
   </style>
 </head>
+
 <body>
   <main class="wrap">
     <section class="card" aria-labelledby="heading">
       <span class="ring" aria-hidden="true"></span>
+
       <div class="brand">
         <div class="logo" aria-hidden="true">KZ</div>
         <div>
-          <h1 id="heading">Binnenkort hier: <br />Kudazo <strong>Software Engineering</strong></h1>
-          <span class="tag">Website in ontwikkeling</span>
+          <h1 id="heading">Kudazo <strong>Software Engineering</strong></h1>
+
+          <div class="tagrow" aria-label="kernpunten">
+            <span class="tag"><span class="dot" aria-hidden="true"></span>Beschikbaar buiten kantooruren</span>
+            <span class="tag">Max. ±12 uur/week</span>
+            <span class="tag">Delphi • MySQL • SQL Server</span>
+            <span class="tag">Python automatisering</span>
+          </div>
         </div>
       </div>
 
       <div class="grid">
         <div>
           <p>
-            We werken aan een strakke, snelle website. Binnenkort vind je hier informatie over onze diensten,
-            projecten en beschikbaarheid.
+            Ik help organisaties met het <b>onderhoud</b>, de <b>optimalisatie</b> en <b>uitbreiding</b> van bestaande
+            applicaties en databases. Ideaal voor bedrijven waar continuïteit belangrijk is en wijzigingen
+            liever ’s avonds of in het weekend plaatsvinden.
           </p>
-          <div class="actions">
-            <a class="btn primary" href="mailto:info@kudazo.nl?subject=Contact%20via%20website%20Kudazo&body=Hallo%20Kudazo%2C%0A%0AIk%20heb%20interesse%20in...">Mail ons</a>
-            <a class="btn" href="mailto:info@kudazo.nl?subject=Kudazo%20–%20informatieaanvraag">Plan contact</a>
+
+          <div class="kpi" aria-label="diensten in het kort">
+            <span class="pill"><b>Delphi (VCL/Win32)</b> bugfixes & kleine features</span>
+            <span class="pill"><b>Database performance</b> (MySQL/SQL Server)</span>
+            <span class="pill"><b>Rapportages/exports</b> & dataconversies</span>
+            <span class="pill"><b>Python</b> ETL & automatisering</span>
           </div>
+
+          <div class="hr" aria-hidden="true"></div>
+
+          <div class="actions">
+            <a class="btn primary"
+               href="mailto:info@kudazo.nl?subject=Opdracht%20(Delphi/DB)%20via%20kudazo.nl&body=Hoi%2C%0A%0AIk%20zoek%20hulp%20bij%20...%0A%0AContext%20(%2B%2F-%20regels%20of%20schatting%20uren):%0ADeadline%3A%0ATech%3A%0A%0AVoorkeur%20moment(en)%3A%20avond%2Fweekend%0A%0AGroet%2C">
+              Mail voor intake
+            </a>
+
+            <!-- TODO: vervang de LinkedIn URL -->
+            <a class="btn ghost" href="https://www.linkedin.com/in/pieterhummel/" target="_blank" rel="noopener">
+              LinkedIn
+            </a>
+
+            <a class="btn" href="#contact">
+              Beschikbaarheid & contact
+            </a>
+          </div>
+
+          <p class="mini">
+            Werkvorm: <b>remote</b>. Afstemming kort en doelgericht. Ik pak bij voorkeur <b>afgebakende opdrachten</b>
+            (bijv. 4–12 uur/week) met duidelijke oplevering.
+          </p>
         </div>
-        <div class="tile">
-          <strong>Wat kun je verwachten?</strong>
-          <ul style="margin:10px 0 0 18px; padding:0 0 0 4px">
-            <li>Freelance software engineering</li>
-            <li>Delphi • SQL Server • REST API-integraties</li>
-            <li>Python scripting & automatisering</li>
-            <li>Heldere communicatie, snelle oplevering</li>
+
+        <aside class="tile" aria-label="waar ik bij help">
+          <strong>Waar ik vaak bij help</strong>
+          <ul>
+            <li>Stabiliseren van een bestaande Delphi-app (bugs, edge-cases, crashes)</li>
+            <li>Trage queries / index-advies / stored procedures opschonen</li>
+            <li>Rapportages, exports (CSV/Excel/JSON) en import-processen</li>
+            <li>Kleine integraties: REST/HTTP, data uit API’s verwerken</li>
+            <li>Automatisering met Python (ETL, scripts, batchjobs)</li>
           </ul>
-        </div>
+
+          <div class="hr" aria-hidden="true"></div>
+
+          <strong id="contact">Beschikbaarheid</strong>
+          <ul>
+            <li>Doordeweeks: avonden</li>
+            <li>Weekend: in overleg</li>
+            <li>Maximaal: ±12 uur per week</li>
+          </ul>
+
+          <div class="actions" style="margin-top:12px">
+            <a class="btn" href="mailto:info@kudazo.nl?subject=Kort%20kennismaken%20(15%20min)&body=Hoi%2C%0A%0AIk%20wil%20graag%20kort%20kennismaken.%0A%0AVoorkeur%20moment(en)%3A%20...%0A%0AGroet%2C">
+              Plan kennismaking
+            </a>
+          </div>
+
+          <p class="mini">
+            Tip: stuur 3 regels context + (ruwe) scope. Dan kan ik snel aangeven of het past binnen avond/weekend.
+          </p>
+        </aside>
       </div>
+
       <footer>
         © <span id="year"></span> Kudazo. Alle rechten voorbehouden.
       </footer>
     </section>
   </main>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
