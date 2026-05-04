@@ -177,17 +177,17 @@
     .hero-left {
       position: relative;
       z-index: 2;
-      flex: 0 0 52%;
+      width: 100%;
       display: flex;
-      justify-content: flex-end;
-      background: radial-gradient(ellipse at 70% 50%,
-        rgba(14, 165, 233, 0.07) 0%, transparent 65%);
+      justify-content: flex-start;
+      align-items: center;
+      min-height: calc(100vh - var(--nav-h));
     }
 
     .hero-left-inner {
-      max-width: 570px;
-      width: 100%;
-      padding: 40px 64px 80px 28px;
+      max-width: 580px;
+      padding: 60px 0 80px 28px;
+      margin-left: max(28px, calc((100vw - var(--max)) / 2 + 28px));
     }
 
     .badge {
@@ -315,17 +315,15 @@
     /* ── HERO IMAGE ────────────────────────── */
     .hero-right {
       position: absolute;
-      top: 0; right: 0;
-      width: 72%;
-      height: 100%;
-      z-index: 1;
+      inset: 0;
+      z-index: 0;
     }
 
     .hero-right img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center center;
+      object-position: right center;
       display: block;
     }
 
@@ -334,8 +332,14 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to right, var(--bg) 0%, rgba(8,14,28,.35) 22%, transparent 52%),
-        linear-gradient(to top, var(--bg) 0%, transparent 20%);
+        linear-gradient(to right,
+          rgba(8,14,28,1.00)  0%,
+          rgba(8,14,28,0.92) 28%,
+          rgba(8,14,28,0.50) 52%,
+          rgba(8,14,28,0.08) 78%,
+          transparent        100%
+        ),
+        linear-gradient(to top, rgba(8,14,28,0.75) 0%, transparent 25%);
       pointer-events: none;
     }
 
@@ -649,10 +653,14 @@
 
     /* ── RESPONSIVE ────────────────────────── */
     @media (max-width: 860px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; padding-bottom: 80px; }
-      .hero-right { display: none; }
-      .hero-left { justify-content: flex-start; }
-      .hero-left-inner { padding: 60px 28px 0; max-width: 100%; }
+      .hero { min-height: auto; padding-bottom: 80px; }
+      .hero-right::after {
+        background: linear-gradient(to bottom,
+          transparent 0%, rgba(8,14,28,0.6) 60%, rgba(8,14,28,1) 100%),
+          linear-gradient(to right, rgba(8,14,28,0.8) 0%, transparent 60%);
+      }
+      .hero-left { justify-content: flex-start; min-height: 100vh; }
+      .hero-left-inner { padding: 60px 28px 80px; max-width: 100%; margin-left: 0; }
       .svc-grid { grid-template-columns: 1fr; }
       .how-grid { grid-template-columns: 1fr; }
       .avail-grid { grid-template-columns: 1fr; gap: 40px; }
