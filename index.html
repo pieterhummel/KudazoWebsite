@@ -3,210 +3,945 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kudazo Software Engineering – Delphi & Databases (Avond/Weekend)</title>
-  <meta name="description" content="Freelance software engineer (Delphi & Databases). Onderhoud, optimalisatie en ondersteuning van bestaande applicaties. Beschikbaar buiten kantooruren (avonden/weekenden), max. 12 uur per week." />
 
-  <meta property="og:title" content="Kudazo Software Engineering – Delphi & Databases" />
-  <meta property="og:description" content="Onderhoud & optimalisatie van bestaande applicaties. Avond- & weekendinzet (max. 12u/week)." />
+  <title>Kudazo – Freelance Delphi Developer & IT Consultant | Legacy Software Specialist</title>
+  <meta name="description" content="Senior freelance software engineer (30+ jaar) gespecialiseerd in Delphi, SQL Server en MySQL. Bugfixes, database-optimalisatie en legacy software onderhoud. Beschikbaar buiten kantooruren." />
+  <link rel="canonical" href="https://kudazo.nl/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kudazo – Freelance Delphi Developer & Legacy Software Specialist" />
+  <meta property="og:description" content="Senior IT-consultant met 30+ jaar ervaring. Delphi, SQL Server, MySQL. Database-optimalisatie, bugfixes en legacy systeem onderhoud. Beschikbaar buiten kantooruren." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://dummyimage.com/1200x630/0f172a/ffffff&text=Kudazo" />
+  <meta property="og:url" content="https://kudazo.nl/" />
+  <meta property="og:image" content="https://kudazo.nl/images/og.jpg" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Kudazo Software Engineering",
+    "url": "https://kudazo.nl",
+    "email": "info@kudazo.nl",
+    "description": "Freelance software engineer gespecialiseerd in Delphi, SQL Server en MySQL. Legacy software onderhoud, database-optimalisatie en Python automatisering.",
+    "founder": {
+      "@type": "Person",
+      "name": "Pieter Hummel",
+      "jobTitle": "Senior Software Engineer & IT Consultant"
+    },
+    "knowsAbout": ["Delphi", "VCL", "SQL Server", "MySQL", "Legacy Software", "Database Optimization", "Python", "Software Engineering"]
+  }
+  </script>
 
   <style>
-    :root{
-      --bg: #0f172a;
-      --bg2:#111827;
-      --fg: #e5e7eb;
-      --muted:#9ca3af;
-      --accent:#14b8a6;
-      --card:#0b1224aa;
-      --ring:#22d3ee55;
-      --line:#1f2937;
-      --good:#22c55e;
+    /* ── RESET ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── TOKENS ────────────────────────────── */
+    :root {
+      --bg:      #080e1c;
+      --bg2:     #0d1526;
+      --bg3:     #0f1a30;
+      --fg:      #e2e8f0;
+      --muted:   #7d95b0;
+      --accent:  #14b8a6;
+      --blue:    #0ea5e9;
+      --line:    #182035;
+      --line2:   #1e2e4a;
+      --green:   #22c55e;
+      --max:     1140px;
+      --nav-h:   64px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--fg);
-      background: radial-gradient(1200px 600px at 80% 10%, #0b1224 10%, transparent 60%),
-                  radial-gradient(900px 500px at 10% 90%, #12233f 10%, transparent 60%),
-                  linear-gradient(160deg, var(--bg), var(--bg2));
-      display:grid;
-      place-items:center;
-      padding:24px;
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .wrap{max-width:980px;width:100%}
-    .card{
-      position:relative;
-      background:var(--card);
-      border:1px solid var(--line);
-      backdrop-filter: blur(8px);
-      border-radius:24px;
-      padding:32px 28px;
-      box-shadow: 0 10px 30px #0006, inset 0 0 0 1px #ffffff10;
+
+    /* ── LAYOUT ────────────────────────────── */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 28px;
     }
-    .brand{display:flex; align-items:center; gap:16px; margin-bottom:18px}
-    .logo{
-      width:56px; height:56px; border-radius:16px;
-      background: conic-gradient(from 210deg, #0ea5e9, #14b8a6, #22d3ee, #0ea5e9);
-      display:grid; place-items:center; color:white; font-weight:800; font-size:22px;
-      box-shadow: 0 0 0 6px #ffffff08, 0 12px 30px #0ea5e966;
-      user-select:none;
+
+    .section { padding: 100px 0; }
+
+    /* ── NAV ───────────────────────────────── */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      background: rgba(8, 14, 28, 0.90);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
-    h1{
-      font-size:clamp(28px, 5vw, 42px);
-      line-height:1.05; margin:0; letter-spacing:-0.02em;
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 28px;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .tagrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:6px 10px; border-radius:999px;
-      border:1px solid var(--line); color:var(--muted); font-size:14px; background:#0b1224bb;
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
     }
-    .dot{width:8px;height:8px;border-radius:99px;background:var(--good); box-shadow:0 0 0 4px #22c55e22}
-    p{color:var(--muted); font-size:18px; line-height:1.65; margin:16px 0 18px}
-    .actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:10px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 16px; border-radius:12px; text-decoration:none; font-weight:600;
-      border:1px solid var(--line); background:#0b1224; color:var(--fg);
-      transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease, opacity .2s ease;
-      white-space:nowrap;
+
+    .nav-mark {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #04101a;
+      flex-shrink: 0;
     }
-    .btn:hover{ transform: translateY(-1px); border-color:#334155; box-shadow:0 6px 18px #0006}
-    .btn.primary{ background: linear-gradient(135deg, #0ea5e9, #14b8a6); color:#081018; border:none }
-    .btn.ghost{ background: transparent }
-    .grid{ display:grid; grid-template-columns: 1fr; gap:18px; margin-top:18px }
-    @media (min-width: 820px){ .grid{ grid-template-columns: 1.15fr .85fr } }
-    .tile{
-      padding:16px; border-radius:16px; border:1px dashed #2a3649;
-      color:#b7c3d0; background:#0b122480;
+
+    .nav-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--fg);
+      letter-spacing: -0.02em;
     }
-    .tile strong{color:var(--fg)}
-    ul{margin:10px 0 0 18px; padding:0 0 0 4px}
-    li{margin:6px 0}
-    .mini{
-      margin-top:12px; font-size:14px; color:#94a3b8; line-height:1.55
+
+    .nav-btn {
+      padding: 9px 20px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      color: #04101a;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      transition: opacity .15s, transform .15s;
+      white-space: nowrap;
     }
-    .mini a{color:#cbd5e1}
-    footer{ margin-top:18px; text-align:center; color:#64748b; font-size:13px }
-    .ring{ position:absolute; inset:-2px; border-radius:24px; pointer-events:none; box-shadow:0 0 0 6px var(--ring) }
-    .split{display:grid; gap:10px; margin-top:12px}
-    .kpi{
-      display:flex; flex-wrap:wrap; gap:10px;
+    .nav-btn:hover { opacity: .85; transform: translateY(-1px); }
+
+    /* ── HERO ──────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: var(--nav-h);
+      overflow: hidden;
     }
-    .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:10px 12px; border-radius:14px; border:1px solid var(--line);
-      background:#0b1224; color:#cbd5e1; font-size:14px;
+
+    .hero-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
-    .pill b{color:var(--fg)}
-    .hr{height:1px;background:#1f293733;margin:16px 0}
+
+    .hero-left-inner {
+      max-width: 570px;
+      width: 100%;
+      padding: 80px 64px 80px 28px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line2);
+      background: rgba(14, 165, 233, 0.07);
+      color: var(--accent);
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: .03em;
+      margin-bottom: 28px;
+    }
+
+    .badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, .2);
+      flex-shrink: 0;
+    }
+
+    .hero-h1 {
+      font-size: clamp(34px, 4.5vw, 60px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 22px;
+    }
+
+    .grad {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 17.5px;
+      color: var(--muted);
+      line-height: 1.72;
+      margin-bottom: 36px;
+      max-width: 460px;
+    }
+
+    .hero-sub strong { color: var(--fg); font-weight: 600; }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+
+    /* ── BUTTONS ───────────────────────────── */
+    .btn-fill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      color: #04101a;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      border: none;
+      transition: transform .15s, box-shadow .2s;
+      white-space: nowrap;
+    }
+    .btn-fill:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(20, 184, 166, .35); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 11px;
+      border: 1px solid var(--line2);
+      background: transparent;
+      color: var(--fg);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .btn-outline:hover { border-color: #2e4265; transform: translateY(-2px); }
+
+    /* ── STATS ─────────────────────────────── */
+    .stats {
+      display: flex;
+      align-items: center;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 0 28px;
+    }
+    .stat:first-child { padding-left: 0; }
+
+    .stat-n {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+      line-height: 1;
+    }
+
+    .stat-l {
+      font-size: 12.5px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .stat-sep {
+      width: 1px;
+      height: 40px;
+      background: var(--line2);
+      flex-shrink: 0;
+    }
+
+    /* ── HERO IMAGE ────────────────────────── */
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+      display: block;
+    }
+
+    /* fade left → bg, fade bottom */
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, var(--bg) 0%, rgba(8,14,28,.25) 38%, transparent 58%),
+        linear-gradient(to top, var(--bg) 0%, transparent 22%);
+      pointer-events: none;
+    }
+
+    /* ── SECTION HEADER ────────────────────── */
+    .s-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .s-tag::before {
+      content: '';
+      width: 18px; height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .s-h2 {
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .s-p {
+      font-size: 16.5px;
+      color: var(--muted);
+      line-height: 1.72;
+      max-width: 540px;
+    }
+
+    /* ── SERVICES ──────────────────────────── */
+    .services-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 52px;
+    }
+
+    .svc-card {
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid var(--line2);
+      background: var(--bg3);
+      position: relative;
+      overflow: hidden;
+      transition: border-color .25s, transform .2s;
+    }
+
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--blue));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+
+    .svc-card:hover { border-color: #253a5e; transform: translateY(-3px); }
+    .svc-card:hover::after { transform: scaleX(1); }
+
+    .svc-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--line2);
+      background: rgba(20, 184, 166, .07);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .svc-card h3 {
+      font-size: 16.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+      color: var(--fg);
+    }
+
+    .svc-card > p {
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.68;
+      margin-bottom: 14px;
+    }
+
+    .svc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .svc-list li {
+      font-size: 13.5px;
+      color: #5d7899;
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .svc-list li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── HOW IT WORKS ──────────────────────── */
+    .how-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 52px;
+    }
+
+    .how-step {
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--bg2);
+    }
+
+    .step-n {
+      width: 42px; height: 42px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      color: #04101a;
+      font-weight: 800;
+      font-size: 17px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+    }
+
+    .how-step h3 {
+      font-size: 16.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .how-step p {
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    /* ── AVAILABILITY ──────────────────────── */
+    .avail-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .avail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .avail-list {
+      list-style: none;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .avail-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15.5px;
+      color: var(--fg);
+    }
+
+    .avail-ic {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--line2);
+      background: var(--bg3);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .avail-img {
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .avail-img img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: brightness(.7) saturate(.85);
+    }
+
+    .avail-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg2) 0%, transparent 40%);
+    }
+
+    /* ── CTA ───────────────────────────────── */
+    .cta-section { padding: 80px 0 100px; }
+
+    .cta-box {
+      background: var(--bg2);
+      border: 1px solid var(--line2);
+      border-radius: 24px;
+      padding: 72px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 640px; height: 320px;
+      background: radial-gradient(ellipse, rgba(20, 184, 166, .10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(26px, 3.5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .cta-box > p {
+      font-size: 16.5px;
+      color: var(--muted);
+      line-height: 1.72;
+      max-width: 480px;
+      margin: 0 auto 36px;
+      position: relative;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .cta-tip {
+      margin-top: 28px;
+      font-size: 13.5px;
+      color: #3d5070;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .cta-tip strong { color: #6b84a0; }
+
+    /* ── FOOTER ────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-copy { font-size: 13.5px; color: #384f68; }
+
+    .footer-links { display: flex; gap: 24px; }
+
+    .footer-links a {
+      font-size: 13.5px;
+      color: #384f68;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--muted); }
+
+    /* ── RESPONSIVE ────────────────────────── */
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-bottom: 80px; }
+      .hero-right { display: none; }
+      .hero-left { justify-content: flex-start; }
+      .hero-left-inner { padding: 60px 28px 0; max-width: 100%; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr; }
+      .avail-grid { grid-template-columns: 1fr; gap: 40px; }
+      .avail-img { display: none; }
+      .section { padding: 72px 0; }
+      .cta-box { padding: 48px 28px; }
+    }
+
+    @media (max-width: 480px) {
+      .stats { flex-wrap: wrap; gap: 16px; }
+      .stat { padding: 0; }
+      .stat-sep { display: none; }
+      .hero-btns { flex-direction: column; }
+      .btn-fill, .btn-outline { justify-content: center; }
+    }
   </style>
 </head>
 
 <body>
-  <main class="wrap">
-    <section class="card" aria-labelledby="heading">
-      <span class="ring" aria-hidden="true"></span>
 
-      <div class="brand">
-        <div class="logo" aria-hidden="true">KZ</div>
-        <div>
-          <h1 id="heading">Kudazo <strong>Software Engineering</strong></h1>
+  <!-- ══ NAV ════════════════════════════════ -->
+  <header class="nav" role="banner">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand" aria-label="Kudazo Software Engineering – Home">
+        <div class="nav-mark" aria-hidden="true">KZ</div>
+        <span class="nav-name">Kudazo</span>
+      </a>
+      <a class="nav-btn"
+         href="mailto:info@kudazo.nl?subject=Opdracht%20(Delphi%2FDB)%20via%20kudazo.nl&body=Hoi%2C%0A%0AIk%20zoek%20hulp%20bij%20...%0A%0AContext%3A%0ATech%3A%0ADeadline%3A%0A%0AGroet%2C">
+        Mail voor intake
+      </a>
+    </div>
+  </header>
 
-          <div class="tagrow" aria-label="kernpunten">
-            <span class="tag"><span class="dot" aria-hidden="true"></span>Beschikbaar buiten kantooruren</span>
-            <span class="tag">Max. ±12 uur/week</span>
-            <span class="tag">Delphi • MySQL • SQL Server</span>
-            <span class="tag">Python automatisering</span>
-          </div>
-        </div>
-      </div>
+  <!-- ══ HERO ═══════════════════════════════ -->
+  <section class="hero" aria-labelledby="hero-h1">
+    <div class="hero-left">
+      <div class="hero-left-inner">
 
-      <div class="grid">
-        <div>
-          <p>
-            Ik help organisaties met het <b>onderhoud</b>, de <b>optimalisatie</b> en <b>uitbreiding</b> van bestaande
-            applicaties en databases. Ideaal voor bedrijven waar continuïteit belangrijk is en wijzigingen
-            liever ’s avonds of in het weekend plaatsvinden.
-          </p>
-
-          <div class="kpi" aria-label="diensten in het kort">
-            <span class="pill"><b>Delphi (VCL/Win32)</b> bugfixes & kleine features</span>
-            <span class="pill"><b>Database performance</b> (MySQL/SQL Server)</span>
-            <span class="pill"><b>Rapportages/exports</b> & dataconversies</span>
-            <span class="pill"><b>Python</b> ETL & automatisering</span>
-          </div>
-
-          <div class="hr" aria-hidden="true"></div>
-
-          <div class="actions">
-            <a class="btn primary"
-               href="mailto:info@kudazo.nl?subject=Opdracht%20(Delphi/DB)%20via%20kudazo.nl&body=Hoi%2C%0A%0AIk%20zoek%20hulp%20bij%20...%0A%0AContext%20(%2B%2F-%20regels%20of%20schatting%20uren):%0ADeadline%3A%0ATech%3A%0A%0AVoorkeur%20moment(en)%3A%20avond%2Fweekend%0A%0AGroet%2C">
-              Mail voor intake
-            </a>
-
-            <!-- TODO: vervang de LinkedIn URL -->
-            <a class="btn ghost" href="https://www.linkedin.com/in/pieterhummel/" target="_blank" rel="noopener">
-              LinkedIn
-            </a>
-
-            <a class="btn" href="#contact">
-              Beschikbaarheid & contact
-            </a>
-          </div>
-
-          <p class="mini">
-            Werkvorm: <b>remote</b>. Afstemming kort en doelgericht. Ik pak bij voorkeur <b>afgebakende opdrachten</b>
-            (bijv. 4–12 uur/week) met duidelijke oplevering.
-          </p>
+        <div class="badge" aria-label="Beschikbaarheidsstatus">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Beschikbaar buiten kantooruren
         </div>
 
-        <aside class="tile" aria-label="waar ik bij help">
-          <strong>Waar ik vaak bij help</strong>
-          <ul>
-            <li>Stabiliseren van een bestaande Delphi-app (bugs, edge-cases, crashes)</li>
-            <li>Trage queries / index-advies / stored procedures opschonen</li>
-            <li>Rapportages, exports (CSV/Excel/JSON) en import-processen</li>
-            <li>Kleine integraties: REST/HTTP, data uit API’s verwerken</li>
-            <li>Automatisering met Python (ETL, scripts, batchjobs)</li>
-          </ul>
+        <h1 class="hero-h1" id="hero-h1">
+          Legacy software<br>
+          <span class="grad">stabiel en snel.</span>
+        </h1>
 
-          <div class="hr" aria-hidden="true"></div>
+        <p class="hero-sub">
+          Senior software engineer met <strong>30+ jaar ervaring</strong> in Delphi,
+          SQL Server en MySQL. Ik los op wat intern blijft liggen — buiten kantooruren,
+          zonder projectruis.
+        </p>
 
-          <strong id="contact">Beschikbaarheid</strong>
-          <ul>
-            <li>Doordeweeks: avonden</li>
-            <li>Weekend: in overleg</li>
-            <li>Maximaal: ±12 uur per week</li>
-          </ul>
+        <div class="hero-btns">
+          <a class="btn-fill"
+             href="mailto:info@kudazo.nl?subject=Opdracht%20(Delphi%2FDB)%20via%20kudazo.nl&body=Hoi%2C%0A%0AIk%20zoek%20hulp%20bij%20...%0A%0AContext%3A%0ATech%3A%0ADeadline%3A%0A%0AVoorkeur%3A%20avond%2Fweekend%0A%0AGroet%2C">
+            Mail voor intake
+          </a>
+          <a class="btn-outline" href="#diensten">
+            Wat ik doe ↓
+          </a>
+        </div>
 
-          <div class="actions" style="margin-top:12px">
-            <a class="btn" href="mailto:info@kudazo.nl?subject=Kort%20kennismaken%20(15%20min)&body=Hoi%2C%0A%0AIk%20wil%20graag%20kort%20kennismaken.%0A%0AVoorkeur%20moment(en)%3A%20...%0A%0AGroet%2C">
-              Plan kennismaking
-            </a>
+        <div class="stats" aria-label="Kerncijfers">
+          <div class="stat">
+            <span class="stat-n">30+</span>
+            <span class="stat-l">jaar ervaring</span>
           </div>
+          <div class="stat-sep" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-n">100%</span>
+            <span class="stat-l">remote</span>
+          </div>
+          <div class="stat-sep" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-n">±12u</span>
+            <span class="stat-l">afgebakend / week</span>
+          </div>
+        </div>
 
-          <p class="mini">
-            Tip: stuur 3 regels context + (ruwe) scope. Dan kan ik snel aangeven of het past binnen avond/weekend.
-          </p>
-        </aside>
       </div>
+    </div>
 
-      <footer>
-        © <span id="year"></span> Kudazo. Alle rechten voorbehouden.
-      </footer>
-    </section>
-  </main>
+    <div class="hero-right" aria-hidden="true">
+      <img src="images/hero.jpg"
+           alt="Senior software engineer analyseert complexe legacy systemen"
+           width="960" height="1080"
+           loading="eager"
+           fetchpriority="high" />
+    </div>
+  </section>
+
+  <!-- ══ DIENSTEN ════════════════════════════ -->
+  <section class="services-section section" id="diensten" aria-labelledby="svc-h2">
+    <div class="wrap">
+      <div class="s-tag">Diensten</div>
+      <h2 class="s-h2" id="svc-h2">Wat ik voor u oplost</h2>
+      <p class="s-p">Geen vage IT-consultancy. Concrete problemen, concrete oplossingen — afgebakend en meetbaar.</p>
+
+      <div class="svc-grid">
+
+        <article class="svc-card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <h3>Delphi (VCL/Win32)</h3>
+          <p>Bugfixes, crashes en edge-cases in bestaande applicaties. Kleine uitbreidingen zonder grote rework.</p>
+          <ul class="svc-list">
+            <li>Stabiliseren van falende VCL-applicaties</li>
+            <li>Geheugenlekkages en threading-problemen</li>
+            <li>Kleine features en UI-aanpassingen</li>
+          </ul>
+        </article>
+
+        <article class="svc-card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <h3>Database-optimalisatie</h3>
+          <p>Trage queries, ontbrekende indexen en stored procedures die te zwaar draaien. SQL Server en MySQL.</p>
+          <ul class="svc-list">
+            <li>Query-analyse en herschrijven</li>
+            <li>Indexstrategie en uitvoeringsplannen</li>
+            <li>Stored procedures opschonen</li>
+          </ul>
+        </article>
+
+        <article class="svc-card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h3>Rapportages & exports</h3>
+          <p>Gestructureerde exports naar CSV, Excel en JSON. Import-processen en dataconversies tussen systemen.</p>
+          <ul class="svc-list">
+            <li>CSV / Excel / JSON-exports op maat</li>
+            <li>Import- en migratiescripts</li>
+            <li>Dataconversies tussen legacy-formaten</li>
+          </ul>
+        </article>
+
+        <article class="svc-card">
+          <div class="svc-icon" aria-hidden="true">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3>Python automatisering</h3>
+          <p>ETL-scripts, batchjobs en REST/API-integraties. Processen die nu handmatig gaan, geautomatiseerd.</p>
+          <ul class="svc-list">
+            <li>ETL-pipelines en databewerkingen</li>
+            <li>Scheduled scripts en batchjobs</li>
+            <li>REST / API-koppelingen</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WERKWIJZE ════════════════════════════ -->
+  <section class="section" id="werkwijze" aria-labelledby="how-h2">
+    <div class="wrap">
+      <div class="s-tag">Werkwijze</div>
+      <h2 class="s-h2" id="how-h2">Hoe het werkt</h2>
+      <p class="s-p">Geen langdurig onboardingtraject. Snel starten, helder afbakenen, opleveren.</p>
+
+      <div class="how-grid">
+
+        <div class="how-step">
+          <div class="step-n" aria-hidden="true">1</div>
+          <h3>Stuur uw scope</h3>
+          <p>Drie regels over het probleem, de technologie en een ruwe schatting. Meer heb ik niet nodig om te beoordelen of het past.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="step-n" aria-hidden="true">2</div>
+          <h3>Ik geef snel uitsluitsel</h3>
+          <p>Binnen een werkdag laat ik weten of het past qua beschikbaarheid en expertise. Geen uur durende kennismakingsgesprekken.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="step-n" aria-hidden="true">3</div>
+          <h3>Oplevering, zonder ruis</h3>
+          <p>Remote, afgebakend, resultaatgericht. Afstemming is kort en doelgericht. Geen overhead, geen projectmanagement.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BESCHIKBAARHEID ══════════════════════ -->
+  <section class="avail-section section" id="beschikbaarheid" aria-labelledby="avail-h2">
+    <div class="wrap">
+      <div class="avail-grid">
+
+        <div>
+          <div class="s-tag">Beschikbaarheid</div>
+          <h2 class="s-h2" id="avail-h2">Bewust parttime.<br>Volledig gefocust.</h2>
+          <p class="s-p">
+            Ik werk maximaal 12 uur per week. Geen beperking — een keuze.
+            Geen projectdruk, geen overhead. Alleen de oplossing.
+          </p>
+
+          <ul class="avail-list">
+            <li>
+              <div class="avail-ic" aria-hidden="true">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              Doordeweeks 's avonds beschikbaar
+            </li>
+            <li>
+              <div class="avail-ic" aria-hidden="true">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+              Weekend in overleg
+            </li>
+            <li>
+              <div class="avail-ic" aria-hidden="true">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              100% remote — geen reistijd, geen kantoor
+            </li>
+            <li>
+              <div class="avail-ic" aria-hidden="true">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <polyline points="9 11 12 14 22 4"/>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+              </div>
+              Voorkeur voor afgebakende opdrachten (4–12 uur)
+            </li>
+          </ul>
+        </div>
+
+        <div class="avail-img" aria-hidden="true">
+          <img src="images/hero-2.jpg"
+               alt="Engineer aan het werk achter meerdere schermen"
+               width="720" height="920"
+               loading="lazy" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ════════════════════════════════ -->
+  <section class="cta-section" aria-labelledby="cta-h2">
+    <div class="wrap">
+      <div class="cta-box">
+        <h2 id="cta-h2">Klaar om te starten?</h2>
+        <p>Stuur drie regels over het probleem, de technologie en een ruwe schatting. Dan laat ik snel weten of het past.</p>
+        <div class="cta-btns">
+          <a class="btn-fill"
+             href="mailto:info@kudazo.nl?subject=Opdracht%20(Delphi%2FDB)%20via%20kudazo.nl&body=Hoi%2C%0A%0AIk%20zoek%20hulp%20bij%20...%0A%0AContext%3A%0ATech%3A%0ADeadline%3A%0A%0AVoorkeur%3A%20avond%2Fweekend%0A%0AGroet%2C">
+            Mail voor intake
+          </a>
+          <a class="btn-outline"
+             href="mailto:info@kudazo.nl?subject=Kort%20kennismaken%20(15%20min)&body=Hoi%2C%0A%0AIk%20wil%20graag%20kort%20kennismaken.%0A%0AVoorkeur%20moment(en)%3A%20...%0A%0AGroet%2C">
+            Plan kennismaking
+          </a>
+          <a class="btn-outline"
+             href="https://www.linkedin.com/in/pieterhummel/"
+             target="_blank" rel="noopener noreferrer">
+            LinkedIn ↗
+          </a>
+        </div>
+        <p class="cta-tip">
+          <strong>Tip:</strong> geen lang verhaal nodig — drie regels context en een ruwe scope is genoeg om te starten.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer-inner">
+        <span class="footer-copy">© <span id="yr"></span> Kudazo Software Engineering. Alle rechten voorbehouden.</span>
+        <nav class="footer-links" aria-label="Footer links">
+          <a href="mailto:info@kudazo.nl">info@kudazo.nl</a>
+          <a href="https://www.linkedin.com/in/pieterhummel/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
