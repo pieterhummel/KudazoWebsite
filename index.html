@@ -134,6 +134,9 @@
     }
 
     .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       padding: 5px 9px;
       border-radius: 7px;
       font-size: 13px;
@@ -146,6 +149,13 @@
     .lang-btn.active {
       color: var(--fg);
       background: var(--line2);
+    }
+    .lang-btn img {
+      width: 18px;
+      height: 13px;
+      border-radius: 2px;
+      object-fit: cover;
+      display: block;
     }
 
     .lang-sep {
@@ -679,9 +689,13 @@
         <span class="nav-name">Kudazo</span>
       </a>
       <div class="lang-switch" aria-label="Taal kiezen">
-        <span class="lang-btn active" aria-current="true">🇳🇱 NL</span>
+        <span class="lang-btn active" aria-current="true">
+          <img src="images/nl.svg" alt="Nederlands" /> NL
+        </span>
         <span class="lang-sep">|</span>
-        <a class="lang-btn" href="en/index.html" lang="en">🇬🇧 EN</a>
+        <a class="lang-btn" href="en/index.html" lang="en">
+          <img src="images/gb.svg" alt="English" /> EN
+        </a>
       </div>
 
       <a class="nav-btn"

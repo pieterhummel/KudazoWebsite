@@ -134,6 +134,9 @@
     }
 
     .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       padding: 5px 9px;
       border-radius: 7px;
       font-size: 13px;
@@ -146,6 +149,13 @@
     .lang-btn.active {
       color: var(--fg);
       background: var(--line2);
+    }
+    .lang-btn img {
+      width: 18px;
+      height: 13px;
+      border-radius: 2px;
+      object-fit: cover;
+      display: block;
     }
 
     .lang-sep {
@@ -674,9 +684,13 @@
       </a>
 
       <div class="lang-switch" aria-label="Choose language">
-        <a class="lang-btn" href="../index.html" lang="nl">🇳🇱 NL</a>
+        <a class="lang-btn" href="../index.html" lang="nl">
+          <img src="../images/nl.svg" alt="Nederlands" /> NL
+        </a>
         <span class="lang-sep">|</span>
-        <span class="lang-btn active" aria-current="true">🇬🇧 EN</span>
+        <span class="lang-btn active" aria-current="true">
+          <img src="../images/gb.svg" alt="English" /> EN
+        </span>
       </div>
 
       <a class="nav-btn"
