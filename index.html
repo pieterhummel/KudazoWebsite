@@ -180,13 +180,13 @@
       width: 100%;
       display: flex;
       justify-content: flex-start;
-      align-items: center;
+      align-items: flex-start;
       min-height: calc(100vh - var(--nav-h));
     }
 
     .hero-left-inner {
       max-width: 580px;
-      padding: 60px 0 80px 28px;
+      padding: max(40px, 10vh) 0 80px 28px;
       margin-left: max(28px, calc((100vw - var(--max)) / 2 + 28px));
     }
 
@@ -337,9 +337,10 @@
       background:
         linear-gradient(to right,
           rgba(8,14,28,1.00)  0%,
-          rgba(8,14,28,0.92) 28%,
-          rgba(8,14,28,0.50) 52%,
-          rgba(8,14,28,0.08) 78%,
+          rgba(8,14,28,0.97) 25%,
+          rgba(8,14,28,0.88) 40%,
+          rgba(8,14,28,0.45) 60%,
+          rgba(8,14,28,0.05) 80%,
           transparent        100%
         ),
         linear-gradient(to top, rgba(8,14,28,0.75) 0%, transparent 25%);
